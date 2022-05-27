@@ -4,7 +4,7 @@ enum RootError: Error {
     case tooLow, tooHigh, notFound
 }
 
-func squareRoot(_ number: Int) throws -> Int {
+func squareRoot(of number: Int) throws -> Int {
     if number < 1 {
         throw RootError.tooLow
     }
@@ -21,10 +21,15 @@ func squareRoot(_ number: Int) throws -> Int {
 }
 
 let number = 9
-
 do {
-    let root = try squareRoot(number)
+    let root = try squareRoot(of: number)
     print("the square root of \(number) is \(root)")
+} catch RootError.tooLow {
+    print("Sorry, the number \(number) is too low")
+} catch RootError.tooHigh {
+    print("Sorry, the number \(number) is too high")
+} catch RootError.notFound {
+    print("Sorry, coudn't find the square root of \(number)")
 } catch {
     print("There was an error")
 }
